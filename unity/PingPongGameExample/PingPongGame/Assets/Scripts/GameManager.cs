@@ -208,15 +208,9 @@ namespace MobiledgeXPingPongGame {
       }
       else
       {
-        if (edgeCloudletStr == "")
-        {
-          clog("No edgeCloudletUri received yet. Please try again.");
-          return;
-        }
-        edgeCloudletUri = new Uri("ws://" + edgeCloudletStr + queryParams);
-        await client.Connect(edgeCloudletUri);
+        await client.Connect(queryParams);
       }
-      clog("Connection to " + edgeCloudletUri + " status: " + client.isOpen());
+      clog("Connection to status: " + client.isOpen());
     }
 
     void Update()
@@ -259,7 +253,7 @@ namespace MobiledgeXPingPongGame {
 
       if (gameSession.status == STATUS.JOINED)
       {
-        //theBall.SendMessage("GoBall", null, SendMessageOptions.RequireReceiver);
+        // theBall.SendMessage("GoBall", null, SendMessageOptions.RequireReceiver);
       }
 
       if (gameSession.status == STATUS.INGAME)
@@ -401,7 +395,6 @@ namespace MobiledgeXPingPongGame {
               }
               port = site.port;
               l7Path = site.L7Path;
-              site.host = "mextest-app-cluster.frankfurt-main.tdg.mobiledgex.net";
               integration.netTest.sites.Enqueue(site);
             }
           }
@@ -1063,9 +1056,5 @@ namespace MobiledgeXPingPongGame {
 
       return false;
     }
-
-
-
   }
-
 }
